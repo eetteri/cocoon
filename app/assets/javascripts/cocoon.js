@@ -53,7 +53,7 @@
   $('.remove_fields.dynamic').live('click', function(e) {
     trigger_removal_callback($(this));
     e.preventDefault();
-    $(this).closest(".nested-fields").remove();
+    $(this).closest(".nested-fields").fadeOut();
   });
 
   $('.remove_fields.existing').live('click', function(e) {
