@@ -32,9 +32,13 @@ module Cocoon
 
     # :nodoc:
     def render_association(association, f, new_object, render_options={})
-      method_name = f.respond_to?(:semantic_fields_for) ? :semantic_fields_for : (f.respond_to?(:simple_fields_for) ? :simple_fields_for : :fields_for)
-      f.send(method_name, association, new_object, {:child_index => "new_#{association}"}.merge(render_options)) do |builder|
-        render(association.to_s.singularize + "_fields", :f => builder, :dynamic => true)
+      def render_association(association, f, new_object, render_options={})
+        locals = render_options.delete(:locals)
+        method_name = f.respond_to?(:semantic_fields_for) ? :semantic_fields_for : (f.respond_to?(:simple_fields_for) ? :simple_fields_for : :fields_for)
+        f.send(method_name, association, new_object, {:child_index => "new_#{association}"}.merge(render_options)) do |builder|
+          locals = locals.nil? ? {:f => builder, :dynamic => true} : {:f => builder, :dynamic => true}.merge(locals)
+          render(association.to_s.singularize + "_fields", locals)
+        end
       end
     end
 
