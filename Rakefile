@@ -33,7 +33,7 @@ begin
     gem.email = "nathan@dixis.com"
     gem.homepage = "http://github.com/nathanvda/cocoon"
     gem.authors = ["Nathan Van der Auwera"]
-    gem.add_development_dependency "rspec", ">= 2.0.0", ">= 2.6.0"
+    #gem.add_development_dependency "rspec", ">= 2.6.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
